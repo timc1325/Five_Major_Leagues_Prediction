@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>prediction</title>
+    <style>
+        body {
+			background-image: url("https://images5.alphacoders.com/571/thumb-1920-571559.jpg");
+			background-repeat: no-repeat;
+      background-size: 100% 1000%;
+      color: white;
+			font-family: Arial, sans-serif;
+		}
+		.dropdown {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			padding: 1px;
+			background-color: rgba(0,0,0,0.5);
+			color: white;
+			border-radius: 200px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.5);
+		}
+		.dropdown.left {
+			left: 100px;
+		}
+		.dropdown.right {
+			right: 100px;
+		}
+		.score {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 48px;
+			font-weight: bold;
+			text-align: center;
+			line-height: 1;
+			padding: 20px;
+			background-color: rgba(0,0,0,0.005);
+		}
+      /* Center the result button */
+      .center {
+        display: flex;
+        justify-content: center;
+      }
+
+      /* Style the logos */
+      .logo {
+			display: block;
+			width: 200px;
+      height: 200px;
+      margin: 10px;
+		}
+    </style>
+  </head>
+  <body>
+    <h1>Game Prediction</h1>
+    <!-- First dropdown box with logo options -->
+    <div class="dropdown left">
+      <label for="dropdown1">Club 1:</label>
+      <select id="dropdown1" onchange="updateLogo1()">
+        <option value="">Select an option</option>
+        <option value="Arsenal">Arsenal</option>
+        <option value="Aston Villa">Aston Villa</option>
+        <option value="Brentford">Brentford</option>
+        <option value="Brighton Hove Albion">Brighton Hove Albion</option>
+        <option value="Burnley">Burnley</option>
+        <option value="Chelsea">Chelsea</option>
+        <option value="Crystal Palace">Crystal Palace</option>
+        <option value="Everton">Everton</option>
+        <option value="Leeds United">Leeds United</option>
+        <option value="Leicester City">Leicester City</option>
+        <option value="Liverpool">Liverpool</option>
+        <option value="Manchester City">Manchester City</option>
+        <option value="Manchester United">Manchester United</option>
+        <option value="Newscastle United">Newscastle United</option>
+        <option value="Norwich City">Norwich City</option>
+        <option value="Southampton">Southampton</option>
+        <option value="Tottenham Hotspur">Tottenham Hotspur</option>
+        <option value="Watford">Watford City</option>
+        <option value="West Ham United">West Ham United</option>
+        <option value="Wolverhampton Wanderers">Wolverhampton Wanderers</option>
+      </select>
+      <div class="logo">
+        <img id="logo1" class="logo" src="bay.png">
+      </div>
+    </div>
+
+    <!-- Second dropdown box with logo options -->
+    <div class="dropdown right">
+      <label for="dropdown2">Club 2:</label>
+      <select id="dropdown2" onchange="updateLogo2()">
+        <option value="">Select an option</option>
+        <option value="Arsenal">Arsenal</option>
+        <option value="Aston Villa">Aston Villa</option>
+        <option value="Brentford">Brentford</option>
+        <option value="Brighton Hove Albion">Brighton Hove Albion</option>
+        <option value="Burnley">Burnley</option>
+        <option value="Chelsea">Chelsea</option>
+        <option value="Crystal Palace">Crystal Palace</option>
+        <option value="Everton">Everton</option>
+        <option value="Leeds United">Leeds United</option>
+        <option value="Leicester City">Leicester City</option>
+        <option value="Liverpool">Liverpool</option>
+        <option value="Manchester City">Manchester City</option>
+        <option value="Manchester United">Manchester United</option>
+        <option value="Newscastle United">Newscastle United</option>
+        <option value="Norwich City">Norwich City</option>
+        <option value="Southampton">Southampton</option>
+        <option value="Tottenham Hotspur">Tottenham Hotspur</option>
+        <option value="Watford">Watford City</option>
+        <option value="West Ham United">West Ham United</option>
+        <option value="Wolverhampton Wanderers">Wolverhampton Wanderers</option>
+      </select>
+      <div class="logo">
+        <img id="logo2" class="logo" src="bar.png">
+      </div>
+    </div>
+
+    <!-- Result button centered below the dropdown boxes -->
+    <div class="center">
+        <button onclick="showResult()">Show Result</button>
+    </div>
+    <div class="score"><div id="result"></div>
+
+
+    <script>
+      function updateLogo1() {
+        // Get the selected value from each dropdown
+        var dropdown1 = document.getElementById("dropdown1");
+        var option1 = dropdown1.options[dropdown1.selectedIndex].value;
+        // Set the appropriate logo for each dropdown
+        var logo1 = document.getElementById("logo1");
+        logo1.src = option1 + ".png";
+   
+      }
+      function updateLogo2() {
+        // Get the selected value from each dropdown
+        var dropdown2 = document.getElementById("dropdown2");
+        var option2 = dropdown2.options[dropdown2.selectedIndex].value;
+        // Set the appropriate logo for each dropdown
+        var logo2 = document.getElementById("logo2");
+        logo2.src = option2 + ".png";
+      }
+      function sleep(milliseconds) {
+        const date = Date.now();
+        let currentDate = null;
+        do {
+          currentDate = Date.now();
+        } while (currentDate - date < milliseconds);
+      }
+      function showResult() {
+        var dropdown1 = document.getElementById("dropdown1");
+        var dropdown2 = document.getElementById("dropdown2");
+        var result = document.getElementById("result");
+        var option1 = dropdown1.options[dropdown1.selectedIndex].value;
+        var option2 = dropdown2.options[dropdown2.selectedIndex].value;
+        sleep(6000)
+        result.innerHTML = Math.floor(Math.random()*3) + " : " + Math.floor(Math.random()*3);
+      }
+
+    </script>
+  </body>
+</html>
+
+
+

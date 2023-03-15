@@ -1,17 +1,22 @@
 import time
 import pandas as pd
+import sys
+if "convert" not in sys.path:
+    #!!!path needs to change per user!!!
+    sys.path.insert(0,"convert")
 
+from convert_res import *
 matches = pd.read_csv("data/match.csv")
-
 
 start = time.time()
 temptime= time.time()
-for idx in range(5377, matches.shape[0]):
+for idx in range(0,matches.shape[0]):
     step = time.time()
     temp = pd.read_html(matches["url"][idx],header=1)
     #append information on the right of match csv: team name, score, formation?
-    if (len(temp)<20):
-        continue
+    temp1 = pd.read_html(matches["url"][idx])
+    result = convert_outcome(temp1[2])
+    result.to_csv("data/outcome/"+str(idx)+".csv")
 
     # get hometeam, away team, 
     for i in temp[3:9]:
@@ -36,7 +41,7 @@ for idx in range(5377, matches.shape[0]):
     awaystat = awaystat.drop(awaystat.index[-1]).reset_index()
     homestat = homestat.drop(homestat.index[-1]).reset_index()
 
-    #local save
+    #local save 
     homestat.to_csv("data/stat/"+str(idx)+"_homestat.csv")
     awaystat.to_csv("data/stat/"+str(idx)+"_awaystat.csv")
     homegk.to_csv("data/stat/"+str(idx)+"_homegk.csv")
@@ -45,7 +50,7 @@ for idx in range(5377, matches.shape[0]):
     print(time.time() -step,"     ",time.time() - start, idx)
 
     if idx % 20 == 19:
-        sleepneed = 65-(time.time()-temptime)
+        sleepneed = 90
         
         print("Now Sleeping for ",sleepneed," seconds zZZ...")
         time.sleep(sleepneed)

@@ -1,6 +1,7 @@
 
 import pandas as pd
-matches = pd.read_csv("/Users/tc/Premier_League_Prediction/data/url.csv")
+
+matches = pd.read_csv("data/url.csv")
 matches.columns=pd.Index(["id", 'Home', 'Score', 'Away', 'url'])
 
 temp = matches.url.str.split("/",expand=True)[6].str.split("-",expand=True)

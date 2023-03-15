@@ -35,10 +35,10 @@ for year in range(2017,2022):
                 print("sleep for ", 65-time.time()+start)
                 time.sleep(65-time.time()+start)
                 start = time.time()
-        
-#There are some special game, eg. covid stops Ligue 1, roma game 1 more change, bochum got punished
-special = list(range(5377,5478))
-special.extend([6546,8297])
+pd.DataFrame(gamelist_url).to_csv("data/original_url.csv")
+#There are some special games that are abandoned due to special circumstances
+special = list(range(5377,5478)) #covid stops Ligue 1
+special.extend([6545,8297]) # roma game 1 more change, bochum got punished
 gamelist_url = [gamelist_url[i] for i in range(len(gamelist_url)) if i not in special]
 namescore = namescore.reset_index(drop=True)
 namescore["url"] = gamelist_url
@@ -46,4 +46,3 @@ namescore.to_csv("data/url.csv")
 
 
 
-                
